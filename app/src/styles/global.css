@@ -16,6 +16,7 @@ menu {
   border-bottom: 2px solid #454545;
   display: flex;
   align-items: center;
+  gap:24px;
 
   & > div {
     background-color: #f0f0f0;
@@ -30,12 +31,54 @@ menu {
   background-color: #f0f0f0;
   padding: 12px 6px;
   display: inline-block;
-  cursor: pointer;
+  cursor: default;
   border: 2px solid #454545;
-  position: absolute;
+  position: relative;
 }
 
 .app {
   height: 100vh;
   position: relative;
 }
+
+.btn-input {
+  position: absolute;
+  background-color: #454545;
+  border: none;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  top: 50%;
+  left: 100%;
+  transform: translate(-25%, -50%);
+  border-radius: 100%;
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+.btn-output {
+    position: absolute;
+  background-color: #454545;
+  border: none;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  top: 50%;
+  right: 100%;
+  transform: translate(+25%, -50%);
+  border-radius: 100%;
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+.svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+

@@ -3,7 +3,6 @@ import "./styles/global.css"
 
 const cards = document.querySelectorAll(".card") as NodeListOf<HTMLDivElement>;
 const app = document.querySelector(".app") as HTMLDivElement;
-const deleteCard = document.querySelector("#delete") as HTMLDivElement;
 
 var draggedCard: HTMLDivElement;
 
@@ -22,12 +21,27 @@ function removeGhost(event: DragEvent) {
   setTimeout(() => ghost.remove(), 0);
 }
 
+function dblclick( { target }: MouseEvent ) {
+  const card = target as HTMLElement;
+  if (card.classList.contains('card')) {
+    card.remove()
+  }
+}
+
+function clickbtn( { target }: MouseEvent ) {
+  const element = target as HTMLButtonElement;
+  if (element.classList.contains('btn-input')) {
+  }
+}
+
 const dragStartClone = (event: DragEvent) => {
   const card = event.target as HTMLDivElement
   draggedCard = card.cloneNode(true) as HTMLDivElement;
     if (app.classList.contains('app')) {
     draggedCard.addEventListener('dragstart', dragstart)
     draggedCard.addEventListener('drag', drag)
+    draggedCard.addEventListener('dblclick', dblclick)
+    draggedCard.addEventListener('click', clickbtn)
     app.appendChild(draggedCard)
   }
   removeGhost(event)
@@ -40,10 +54,6 @@ const dragstart = (event: DragEvent) => {
 
 const drageOver = (event: DragEvent) => {
   event.preventDefault()
-}
-
-const dropDelete = () => {
-  draggedCard.remove()
 }
 
 const drag = (event: MouseEvent) => {
@@ -60,6 +70,3 @@ cards.forEach(card => {
 });
 
 app.addEventListener('dragover', drageOver)
-
-deleteCard.addEventListener('dragover', drageOver)
-deleteCard.addEventListener('drop', dropDelete)
